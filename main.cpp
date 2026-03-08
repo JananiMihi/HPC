@@ -1,10 +1,10 @@
-#include "recommendation.h"
+#include "core.h"
 #include <chrono>
 #include <iostream>
 #include <iomanip>
 
 int main() {
-    std::cout << "=== Phase 1: Serial Baseline - Pearson Correlation Recommendation System ===" << std::endl;
+    std::cout << "=== Serial Baseline - Pearson Correlation Recommendation System ===" << std::endl;
     std::cout << std::endl;
 
     // Parameters

@@ -1,4 +1,4 @@
-#include "recommendation_openmp.h"
+#include "parallel.h"
 #include <random>
 #include <ctime>
 

@@ -1,4 +1,4 @@
-#include "recommendation_openmp.h"
+#include "parallel.h"
 #include <chrono>
 #include <iostream>
 #include <iomanip>
