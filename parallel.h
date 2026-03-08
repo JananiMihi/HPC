@@ -1,5 +1,5 @@
-#ifndef RECOMMENDATION_OPENMP_H
-#define RECOMMENDATION_OPENMP_H
+#ifndef PARALLEL_H
+#define PARALLEL_H
 
 #include <vector>
 #include <cmath>
@@ -70,4 +70,4 @@ public:
     }
 };
 
-#endif // RECOMMENDATION_OPENMP_H
+#endif // PARALLEL_H
