@@ -196,7 +196,7 @@ public:
 };
 
 int main() {
-    std::cout << "=== Phase 1: Serial Baseline - Pearson Correlation Recommendation System ===" << std::endl;
+    std::cout << "===  Serial Baseline - Pearson Correlation Recommendation System ===" << std::endl;
     std::cout << std::endl;
 
     int num_users = 100;
