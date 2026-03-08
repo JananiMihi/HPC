@@ -293,7 +293,7 @@ int main() {
     std::cout << "Accuracy (RMSE): " << std::fixed << std::setprecision(4) << rmse << std::endl;
     std::cout << std::endl;
 
-    std::cout << "Phase 1 Complete!" << std::endl;
+    std::cout << "Complete!" << std::endl;
 
     return 0;
 }

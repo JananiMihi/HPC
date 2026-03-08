@@ -148,7 +148,7 @@ int main() {
     std::cout << "    * OpenMP overhead" << std::endl;
     std::cout << std::endl;
 
-    std::cout << "Phase 2a Complete!" << std::endl;
+    std::cout << "OpenMp Complete!" << std::endl;
 
     return 0;
 }
