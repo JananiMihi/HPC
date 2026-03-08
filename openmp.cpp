@@ -11,7 +11,7 @@ void printHeader(const std::string& title) {
 }
 
 int main() {
-    printHeader("Phase 2a: OpenMP Parallelization - Pearson Correlation Recommendation System");
+    printHeader(" OpenMP Parallelization - Pearson Correlation Recommendation System");
 
     // Parameters
     int num_users = 100;
@@ -126,27 +126,13 @@ int main() {
     std::cout << std::endl;
 
     std::cout << "Parallelization Strategy:" << std::endl;
-    std::cout << "  1. Random data generation - Parallel for loop with thread-local RNG" << std::endl;
-    std::cout << "  2. Correlation computation - Parallel for collapse(2) for user pairs" << std::endl;
-    std::cout << "  3. Rating predictions - Parallel for over users" << std::endl;
-    std::cout << "  4. RMSE calculation - Parallel for with reduction" << std::endl;
+    std::cout << "   Random data generation - Parallel for loop with thread-local RNG" << std::endl;
+    std::cout << "   Correlation computation - Parallel for collapse(2) for user pairs" << std::endl;
+    std::cout << "   Rating predictions - Parallel for over users" << std::endl;
+    std::cout << "   RMSE calculation - Parallel for with reduction" << std::endl;
     std::cout << std::endl;
 
-    std::cout << "Key Optimizations:" << std::endl;
-    std::cout << "  - Correlation matrix computed once and reused" << std::endl;
-    std::cout << "  - Dynamic scheduling for load balancing (variable computation per user)" << std::endl;
-    std::cout << "  - Collapse(2) directive for better thread utilization" << std::endl;
-    std::cout << "  - Reduction clause for thread-safe RMSE accumulation" << std::endl;
-    std::cout << std::endl;
 
-    std::cout << "Expected Speedup:" << std::endl;
-    std::cout << "  - Ideal speedup = Number of threads" << std::endl;
-    std::cout << "  - Actual speedup depends on:" << std::endl;
-    std::cout << "    * Thread contention" << std::endl;
-    std::cout << "    * Cache efficiency" << std::endl;
-    std::cout << "    * Load imbalance" << std::endl;
-    std::cout << "    * OpenMP overhead" << std::endl;
-    std::cout << std::endl;
 
     std::cout << "OpenMp Complete!" << std::endl;
 

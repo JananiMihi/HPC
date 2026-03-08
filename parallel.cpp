@@ -14,7 +14,7 @@ RecommendationSystemOpenMP::RecommendationSystemOpenMP(int users, int items, int
     omp_set_num_threads(num_threads);
     ratings.resize(num_users, std::vector<double>(num_items, 0.0));
 }
-
+// Load ratings from CSV file
 bool RecommendationSystemOpenMP::loadRatingsFromCSV(const std::string& filename) {
     std::ifstream file(filename);
     if (!file.is_open()) {
@@ -42,7 +42,7 @@ bool RecommendationSystemOpenMP::loadRatingsFromCSV(const std::string& filename)
     file.close();
     return true;
 }
-
+//generate random ratings 
 void RecommendationSystemOpenMP::generateRandomRatings(double sparsity) {
     #pragma omp parallel for schedule(static) num_threads(num_threads)
     for (int i = 0; i < num_users; i++) {
@@ -59,7 +59,7 @@ void RecommendationSystemOpenMP::generateRandomRatings(double sparsity) {
         }
     }
 }
-
+// Calculate Pearson correlation between two users (serial)
 double RecommendationSystemOpenMP::calculatePearsonCorrelation(int user1, int user2) {
     if (user1 == user2) return 1.0;
 
@@ -97,7 +97,7 @@ double RecommendationSystemOpenMP::calculatePearsonCorrelation(int user1, int us
 
     return numerator / denominator;
 }
-
+// Calculate correlations for all users (parallel)
 std::vector<std::vector<double>> RecommendationSystemOpenMP::calculateAllCorrelations() {
     std::vector<std::vector<double>> correlations(num_users, std::vector<double>(num_users, 0.0));
 
@@ -112,7 +112,7 @@ std::vector<std::vector<double>> RecommendationSystemOpenMP::calculateAllCorrela
 
     return correlations;
 }
-
+// Find k nearest neighbors for a user 
 std::vector<std::pair<int, double>> RecommendationSystemOpenMP::findNearestNeighbors(
     int user, int k, const std::vector<std::vector<double>>& correlations) {
     
@@ -135,7 +135,7 @@ std::vector<std::pair<int, double>> RecommendationSystemOpenMP::findNearestNeigh
 
     return neighbors;
 }
-
+// Predict rating for an item 
 double RecommendationSystemOpenMP::predictRating(int user, int item, int k_neighbors,
                                                  const std::vector<std::vector<double>>& correlations) {
     if (ratings[user][item] > 0) {
@@ -164,7 +164,7 @@ double RecommendationSystemOpenMP::predictRating(int user, int item, int k_neigh
     double predicted = weighted_sum / weight_sum;
     return std::max(1.0, std::min(5.0, predicted));
 }
-
+// Predict ratings for all items of a user (parallel)
 std::vector<std::vector<double>> RecommendationSystemOpenMP::predictAllRatingsParallel(
     int k_neighbors, const std::vector<std::vector<double>>& correlations) {
     
@@ -180,7 +180,7 @@ std::vector<std::vector<double>> RecommendationSystemOpenMP::predictAllRatingsPa
 
     return predictions;
 }
-
+//accuracy comparison
 double RecommendationSystemOpenMP::validateAccuracyParallel(double test_sparsity, int k_neighbors) {
     Matrix original_ratings = ratings;
     std::vector<std::pair<int, int>> hidden_items;
@@ -221,7 +221,7 @@ double RecommendationSystemOpenMP::validateAccuracyParallel(double test_sparsity
 
     return rmse_error;
 }
-
+// Calculate RMSE (Root Mean Square Error)
 double RecommendationSystemOpenMP::calculateRMSE(const std::vector<double>& predicted,
                                                   const std::vector<double>& actual) {
     if (predicted.size() != actual.size() || predicted.empty()) {
@@ -238,7 +238,7 @@ double RecommendationSystemOpenMP::calculateRMSE(const std::vector<double>& pred
 
     return std::sqrt(sum_squared_errors / predicted.size());
 }
-
+// Print ratings matrix
 void RecommendationSystemOpenMP::printRatings() {
     std::cout << "Ratings Matrix (" << num_users << " users x " << num_items << " items):" << std::endl;
     for (int i = 0; i < std::min(num_users, 5); i++) {
